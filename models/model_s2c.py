@@ -95,8 +95,9 @@ class model_WSSS():
 
         # Define networks
         self.net_main = resnet38d.Net_CAM(C=self.C, D=self.D)
-        sam_path = './pretrained/sam_vit_h.pth'
-        self.net_sam = sam_model_registry['vit_h'](checkpoint=sam_path)
+        # Switched to ViT-B for single GPU training (84% memory reduction vs ViT-H)
+        sam_path = './pretrained/sam_vit_b_01ec64.pth'
+        self.net_sam = sam_model_registry['vit_b'](checkpoint=sam_path)
 
         # Initialize networks with ImageNet pretrained weight
         self.net_main.load_state_dict(resnet38d.convert_mxnet_to_torch('./pretrained/resnet_38d.params'), strict=False)
