@@ -35,7 +35,7 @@ if __name__ == '__main__':
     parser.add_argument("--train_list", default="voc12/train_aug.txt", type=str)
     parser.add_argument("--val_list", default="voc12/train.txt", type=str)
     parser.add_argument("--num_workers", default=8, type=int)
-    parser.add_argument("--batch_size", default=8, type=int)
+    parser.add_argument("--batch_size", default=32, type=int)
     parser.add_argument("--use_se", action='store_true')
     parser.add_argument("--se_path", default='./se/default', type=str)
 
