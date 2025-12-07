@@ -74,7 +74,7 @@ class model_WSSS():
 
         self.T = args.T
         self.th_multi = args.th_multi # Default: 0.5
-        self.size_sam = 1024
+        self.size_sam = 512  # Reduced from 1024 for memory optimization
 
         # Model attributes
         self.net_names = ['net_main']
