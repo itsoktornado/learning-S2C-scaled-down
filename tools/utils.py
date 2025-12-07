@@ -152,8 +152,8 @@ def build_dataset(args, phase='train', path="voc12/train_aug.txt", root='./data/
     if phase=='train':
         dataset = voc12.data.VOC12ClsDataset(path, voc12_root=root, transform=tf)
     elif phase=='val':
-        # MSF dataset augments an image to 8 images with multi-scale & flip 
-        dataset = voc12.data.VOC12ClsDatasetMSF(path, voc12_root=root, scales=[0.5,1.0,1.5,2.0], inter_transform=tf)
+        # MSF dataset augments an image to 6 images with multi-scale & flip
+        dataset = voc12.data.VOC12ClsDatasetMSF(path, voc12_root=root, scales=[0.5,1.0,2.0], inter_transform=tf)
     
     return dataset
 
@@ -172,8 +172,8 @@ def build_dataset_sam(args, phase='train', path="voc12/train_aug.txt", root='./d
         dataset = voc12.data.VOC12ClsDataset_MyTF(path, voc12_root=root, crop=[crop, crop], resize=resize, cj=cj, use_se=use_se, se_path=se_path)
 
     elif phase == 'val':
-        # MSF dataset augments an image to 8 images with multi-scale & flip
-        dataset = voc12.data.VOC12ClsDatasetMSF(path, voc12_root=root, scales=[0.5, 1.0, 1.5, 2.0], inter_transform=tf, use_se=use_se, se_path=se_path)
+        # MSF dataset augments an image to 6 images with multi-scale & flip
+        dataset = voc12.data.VOC12ClsDatasetMSF(path, voc12_root=root, scales=[0.5, 1.0, 2.0], inter_transform=tf, use_se=use_se, se_path=se_path)
 
     return dataset
 
@@ -211,8 +211,8 @@ def build_dataset_moco(args, phase='train', path="voc12/train_aug.txt", root='./
         # dataset = voc12.data.VOC12MocoDataset(args, path, voc12_root=root)
 
     elif phase == 'val':
-        # MSF dataset augments an image to 8 images with multi-scale & flip
-        dataset = voc12.data.VOC12ClsDatasetMSF(path, voc12_root=root, scales=[0.5, 1.0, 1.5, 2.0], inter_transform=tf)
+        # MSF dataset augments an image to 6 images with multi-scale & flip
+        dataset = voc12.data.VOC12ClsDatasetMSF(path, voc12_root=root, scales=[0.5, 1.0, 2.0], inter_transform=tf)
 
     return dataset
 
@@ -232,7 +232,7 @@ def build_dataset_recon(args, phase='train', path="voc12/train_aug.txt", root='.
         dataset = voc12.data.VOC12ClsDatasetRecon(path, voc12_root=root, crop=crop, resize=resize)
 
     elif phase == 'val':
-        # MSF dataset augments an image to 8 images with multi-scale & flip
-        dataset = voc12.data.VOC12ClsDatasetMSF(path, voc12_root=root, scales=[0.5, 1.0, 1.5, 2.0], inter_transform=tf)
+        # MSF dataset augments an image to 6 images with multi-scale & flip
+        dataset = voc12.data.VOC12ClsDatasetMSF(path, voc12_root=root, scales=[0.5, 1.0, 2.0], inter_transform=tf)
 
     return dataset

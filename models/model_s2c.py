@@ -200,10 +200,9 @@ class model_WSSS():
                 self.net_main.eval()
                 img_05 = F.interpolate(self.img, scale_factor=0.5, mode='bilinear', align_corners=True)
                 img_10 = self.img
-                img_15 = F.interpolate(self.img, scale_factor=1.5, mode='bilinear', align_corners=True)
                 img_20 = F.interpolate(self.img, scale_factor=2.0, mode='bilinear', align_corners=True)
-        
-                img_ms = [img_05, img_10, img_15, img_20]
+
+                img_ms = [img_05, img_10, img_20]
                 
                 for k, img in enumerate(img_ms):
                     out = self.net_main(img)
