@@ -1,0 +1,28 @@
+# S2C Inference Requirements
+# Install with: pip install -r requirements_inference.txt
+
+# Core deep learning
+torch>=1.8.0
+torchvision>=0.9.0
+
+# Note: torch-scatter is NOT needed for inference (only for training)
+# If you plan to train the model, install it separately:
+#   pip install torch-scatter
+
+# Image processing
+opencv-python>=4.5.0
+Pillow>=8.0.0
+
+# Visualization
+matplotlib>=3.3.0
+
+# Scientific computing
+numpy>=1.19.0
+scipy>=1.5.0
+scikit-image>=0.17.0
+
+# Segment Anything
+segment-anything @ git+https://github.com/facebookresearch/segment-anything.git
+
+# Progress bar (for batch inference)
+tqdm>=4.50.0
