@@ -3,3 +3,4 @@ test-input/
 results/
 pretrained/
 __pycache__/
+sam_masks/

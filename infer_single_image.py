@@ -170,28 +170,30 @@ def infer_single_image(model, img_list, label, original_size):
 
 def visualize_and_save(image_path, cam_dict, output_dir, categories):
     """Save CAM visualizations"""
-    os.makedirs(output_dir, exist_ok=True)
+    # Get image name without extension
+    img_name = osp.splitext(osp.basename(image_path))[0]
+
+    # Create output directory for this image
+    image_output_dir = osp.join(output_dir, img_name)
+    os.makedirs(image_output_dir, exist_ok=True)
 
     # Load original image
     img = Image.open(image_path).convert('RGB')
     img_np = np.array(img).transpose(2, 0, 1) / 255.0  # (C, H, W)
 
-    # Get image name without extension
-    img_name = osp.splitext(osp.basename(image_path))[0]
-
-    print(f"\nSaving CAM visualizations to: {output_dir}")
+    print(f"\nSaving CAM visualizations to: {image_output_dir}")
 
     for cls_idx, cam in cam_dict.items():
         # Overlay CAM on image
         cam_img = cam_on_image(img_np, cam)
 
         # Save
-        out_path = osp.join(output_dir, f"{img_name}_cam_{categories[cls_idx]}.png")
+        out_path = osp.join(image_output_dir, f"cam_{categories[cls_idx]}.png")
         plt.imsave(out_path, np.transpose(cam_img, (1, 2, 0)))
         print(f"  Saved: {out_path}")
 
     # Save raw CAM dictionary
-    cam_dict_path = osp.join(output_dir, f"{img_name}_cam_dict.npy")
+    cam_dict_path = osp.join(image_output_dir, "cam_dict.npy")
     np.save(cam_dict_path, cam_dict)
     print(f"  Saved CAM dictionary: {cam_dict_path}")
 
